@@ -1,3 +1,10 @@
+/* User */
+drop table if exists Users;
+create table if not exists Users(
+    userId varchar(100) primary key,
+    point int not null
+    );
+
 /* Review */
 drop table if exists Review;
 create table if not exists Review(
@@ -6,8 +13,10 @@ create table if not exists Review(
     reviewId VARCHAR(100) not null primary key,
     content varchar(200),
     userId varchar(100) not null,
-    placeId varchar(100) not null
-    );
+    placeId varchar(100) not null,
+    foreign key (userId)
+    REFERENCES users(userId) on delete set null
+);
 
 /* Photo */
 drop table if exists Photo;
