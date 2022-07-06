@@ -1,16 +1,11 @@
 package com.example.reviewapi.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Data
@@ -26,8 +21,17 @@ public class ReviewEntity {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String reviewId;
     private String content;
-    private String userId;
-    private String placeId;
-    //    private List<String> attachedPhotoIds;
+
+//    @ManyToOne
+//    @JoinColumn(name = "userId")
+//    @ToString.Exclude
+//    private UserEntity user;
+//    private String placeId;
+
+    @OneToMany
+    @JoinColumn(name = "reviewId")
+    private Set<PhotoEntity> attachedPhotos;
     // entity mapping
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "")
 }

@@ -6,6 +6,7 @@ import com.example.reviewapi.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createReview() {
+    public ResponseEntity<?> createReview(@RequestBody ReviewDTO dto) {
         List<UserDTO> userList = new ArrayList<>();
         userList.add(new UserDTO());
         ResponseDTO<Object> response = ResponseDTO.builder().data(Collections.singletonList(userList)).build();
